@@ -1,0 +1,29 @@
+package com.coala.backend.member.api.service;
+
+import com.coala.backend.member.db.dto.request.LoginRequestDto;
+import com.coala.backend.member.db.dto.response.BaseResponseDto;
+import com.coala.backend.member.db.dto.response.MemberInfoResponseDto;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.util.Map;
+
+public interface MemberService {
+
+    BaseResponseDto signUp(Map<String, String> member);
+
+    BaseResponseDto login(LoginRequestDto loginRequestDto, HttpServletResponse response);
+
+    MemberInfoResponseDto loadInfo(String email);
+
+    BaseResponseDto updatePassword(Map<String, String> info);
+
+    BaseResponseDto updateInfo(Map<String, String> info, String email);
+
+    BaseResponseDto logout();
+
+    BaseResponseDto certification(Map<String, String> info);
+
+    BaseResponseDto sendOTP(Map<String, String> info);
+
+}
