@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "react-calendar/dist/Calendar.css";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
@@ -19,6 +19,9 @@ const AuctionWrite = () => {
   const [mindaySelect, setMinDaySelect] = useState("");
 
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const mySellHandler = () => {
     setshowDropdown(!showDropdown);
@@ -124,7 +127,7 @@ const AuctionWrite = () => {
       <SHeader>
         <STittleAndBtn>
           <STitle>게시글 등록</STitle>
-          <SCallMyProductBtn onClick={mySellHandler}>
+          {/* <SCallMyProductBtn onClick={mySellHandler}>
             <SBtnText>내 제품 불러오기</SBtnText>
             {showDropdown && (
               <SDropdownMenu>
@@ -133,7 +136,7 @@ const AuctionWrite = () => {
                 ))}
               </SDropdownMenu>
             )}
-          </SCallMyProductBtn>
+          </SCallMyProductBtn> */}
         </STittleAndBtn>
         <SImportantText>*필수 항목</SImportantText>
       </SHeader>
@@ -259,24 +262,24 @@ const STitle = styled.p`
   line-height: normal;
 `;
 
-const SCallMyProductBtn = styled.button`
-  display: flex;
-  width: 143px;
-  height: 41px;
-  padding: 11px 16px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 10px;
-  background: var(--primary, #e9d5ff);
-`;
+// const SCallMyProductBtn = styled.button`
+//   display: flex;
+//   width: 143px;
+//   height: 41px;
+//   padding: 11px 16px;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 10px;
+//   border-radius: 10px;
+//   background: var(--primary, #e9d5ff);
+// `;
 
-const SBtnText = styled.p`
-  color: var(--white, #fff);
-  text-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
-  font-family: Inter;
-  font-weight: 700;
-`;
+// const SBtnText = styled.p`
+//   color: var(--white, #fff);
+//   text-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+//   font-family: Inter;
+//   font-weight: 700;
+// `;
 
 const SImportantText = styled.p`
   color: var(--necessary, #fb1818);
