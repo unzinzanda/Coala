@@ -79,8 +79,8 @@ const receiveData = withCors(async (
     }));
     const sortedChatRooms = updatedData
         .sort((a : any , b : any) => {
-            const dateA = a.lastlog ? new Date(a.lastlog.created_at) : new Date(a.created_at);
-            const dateB = b.lastlog ? new Date(b.lastlog.created_at) : new Date(b.created_at);
+            const dateA = a.latestLog ? new Date(a.latestLog.created_at) : new Date(a.created_at);
+            const dateB = b.latestLog ? new Date(b.latestLog.created_at) : new Date(b.created_at);
             return dateB.getTime() - dateA.getTime();
         });
     
