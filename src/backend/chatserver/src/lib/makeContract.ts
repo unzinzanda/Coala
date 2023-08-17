@@ -110,7 +110,7 @@ export default async (contract_id : Number | BigInt) => {
     }
 
     const file = new Blob([new Uint8Array(array)], { type: 'image/png' });
-    const fileName = 'sign_img_' + name + '_' + new Date().getTime() + '.png';
+    const fileName = 'contract_' + new Date().getTime() + '.png';
 
     let formData = new FormData();
     formData.append('file', file, fileName);
