@@ -76,11 +76,11 @@ const receiveData = withCors(async (
     }));
     const sortedChatRooms = updatedData
         .sort((a : any , b : any) => {
-            let dateA : string | Date = a.latestLog ? setTimeStamp(a.latestLog.created_at) : setTimeStamp(a.created_at);
-            let dateB : string | Date = b.latestLog ? setTimeStamp(b.latestLog.created_at) : setTimeStamp(b.created_at);
+            let dateA : string | Date = a.latetLog ? new Date(a.latetLog.created_at) : new Date(a.created_at);
+            let dateB : string | Date = b.latetLog ? new Date(b.latetLog.created_at) : new Date(b.created_at);
             
-            dateA = new Date(dateA);
-            dateB = new Date(dateB);
+            // dateA = new Date(dateA);
+            // dateB = new Date(dateB);
 
             return dateB.getTime() - dateA.getTime();
         });
