@@ -89,7 +89,7 @@ export default async (contract_id : Number | BigInt) => {
     const textWidth_cs = metrics_cs.width;
     context.fillText(cs_name, 550 - textWidth_cs, 896);
     const consumer_sign = await loadImage(result.consumer_sign);
-    context.drawImage(producer_sign, 560, 850, consumer_sign.width, consumer_sign.height);
+    context.drawImage(consumer_sign, 560, 850, consumer_sign.width, consumer_sign.height);
 
     // 계약 일시
     const created_at = formatDate(result.created_at);
