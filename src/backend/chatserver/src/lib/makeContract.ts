@@ -30,10 +30,10 @@ export default async (contract_id : Number | BigInt) => {
     const [producer] : member[] = await readUser({id : result.producer_id});
     const [consumer] : member[] = await readUser({id : result.consumer_id});
 
-    context.font = '30px "NanumSquare"';
+    context.font = '30px "Noto sans KR"';
     context.fillStyle = '#000000';
-    const pd_name = producer.name;
-    const cs_name = consumer.name
+    const pd_name = String(producer.name);
+    const cs_name = String(consumer.name);
 
     // 제공자, //대여자
     context.fillText(pd_name, 215, 130); // 원하는 위치에 텍스트 그리기
@@ -43,7 +43,7 @@ export default async (contract_id : Number | BigInt) => {
     context.fillText(result.productName, 223, 282);
     
     // 계약기간
-    context.font = '25px "NanumSquare"';
+    context.font = '25px "Noto sans KR"';
     const rental_at = formatDate(result.rental_at);
     const metrics_rental = context.measureText(rental_at);
     const textWidth_rental = metrics_rental.width;
@@ -52,10 +52,10 @@ export default async (contract_id : Number | BigInt) => {
     context.fillText(rental_at, 200, 344);
     context.fillText('~', 200 + textWidth_rental + 10, 344);
     context.fillText(formatDate(result.return_at), 200 + textWidth_rental + 10 + 30, 344);
-    context.fillText(`[${result.period} 일]`, image.width - 150, 344);
+    context.fillText(`[${String(result.period)} 일]`, image.width - 150, 344);
 
     //대여료
-    context.font = '30px "NanumSquare"';
+    context.font = '30px "Noto sans KR"';
     const rental_cost = `${result.rental_cost}`;
     const metrics_rt = context.measureText(rental_cost);
     const textWidth_rt = metrics_rt.width;
@@ -89,7 +89,7 @@ export default async (contract_id : Number | BigInt) => {
     const textWidth_cs = metrics_cs.width;
     context.fillText(cs_name, 550 - textWidth_cs, 896);
     const consumer_sign = await loadImage(result.consumer_sign);
-    context.drawImage(consumer_sign, 560, 850, consumer_sign.width, consumer_sign.height);
+    context.drawImage(producer_sign, 560, 850, consumer_sign.width, consumer_sign.height);
 
     // 계약 일시
     const created_at = formatDate(result.created_at);
@@ -98,9 +98,23 @@ export default async (contract_id : Number | BigInt) => {
     context.fillText(formatDate(result.created_at), 800 - textWidth_created, 1000);
 
     // Canvas를 이미지로 변환
-    const imageBuffer = canvas.toBuffer('image/png');
-    const base64Image = imageBuffer.toString('base64');
+    // Canvas를 Base64로 변환
+    const imgBase64 = canvas.toBuffer('image/png').toString('base64');
 
-    return base64Image;
+    // Base64 디코딩
+    const decoding = atob(imgBase64);
+
+    let array = [];
+    for (let i = 0; i < decoding.length; i++) {
+        array.push(decoding.charCodeAt(i));
+    }
+
+    const file = new Blob([new Uint8Array(array)], { type: 'image/png' });
+    const fileName = 'sign_img_' + name + '_' + new Date().getTime() + '.png';
+
+    let formData = new FormData();
+    formData.append('file', file, fileName);
+
+    return formData;
 
 };

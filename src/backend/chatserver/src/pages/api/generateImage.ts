@@ -12,8 +12,6 @@ function formatDate(dateString : string) {
 }
 
 export default async (req :NextApiRequest, res : NextApiResponse) => {
-
-    const contract_id = req.body;
     const image = await loadImage('public/contractForm.png'); // 이미지 로드
     const canvas = createCanvas(image.width, image.height);
     console.log(image.width, image.height); //866 1047
@@ -23,14 +21,15 @@ export default async (req :NextApiRequest, res : NextApiResponse) => {
     context.drawImage(image, 0, 0, image.width, image.height);
 
     // 텍스트 설정
-    const {conditionQuery, values} = buildConditionQuery({id : contract_id}, ' AND ');
+    const {conditionQuery, values} = buildConditionQuery({id : 1}, ' AND ');
     const [result] : contract[]= await readQuery('History', {conditionQuery, values});
 
     if (!result) {return {message : "No Contract found"};}
     const [producer] : member[] = await readUser({id : result.producer_id});
     const [consumer] : member[] = await readUser({id : result.consumer_id});
 
-    context.font = '30px "NanumSquare"';
+    const font = 'VarelaRound'
+    context.font = `30px "VarelaRound"`;
     context.fillStyle = '#000000';
     const pd_name = producer.name;
     const cs_name = consumer.name
@@ -43,7 +42,7 @@ export default async (req :NextApiRequest, res : NextApiResponse) => {
     context.fillText(result.productName, 223, 282);
     
     // 계약기간
-    context.font = '25px "NanumSquare"';
+    context.font = `25px "VarelaRound"`;
     const rental_at = formatDate(result.rental_at);
     const metrics_rental = context.measureText(rental_at);
     const textWidth_rental = metrics_rental.width;
@@ -55,7 +54,7 @@ export default async (req :NextApiRequest, res : NextApiResponse) => {
     context.fillText(`[${result.period} 일]`, image.width - 150, 344);
 
     //대여료
-    context.font = '30px "NanumSquare"';
+    context.font = `30px "VarelaRound"`;
     const rental_cost = `${result.rental_cost}`;
     const metrics_rt = context.measureText(rental_cost);
     const textWidth_rt = metrics_rt.width;
@@ -88,8 +87,8 @@ export default async (req :NextApiRequest, res : NextApiResponse) => {
     const metrics_cs = context.measureText(cs_name);
     const textWidth_cs = metrics_cs.width;
     context.fillText(cs_name, 550 - textWidth_cs, 896);
-    const consumer_sign = await loadImage(result.consumer_sign);
-    context.drawImage(consumer_sign, 560, 850, consumer_sign.width, consumer_sign.height);
+    // const consumer_sign = await loadImage(result.consumer_sign);
+    context.drawImage(producer_sign, 560, 850, producer_sign.width, producer_sign.height);
 
     // 계약 일시
     const created_at = formatDate(result.created_at);
