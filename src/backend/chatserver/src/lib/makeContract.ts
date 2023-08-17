@@ -60,7 +60,7 @@ export default async (contract_id : Number | BigInt) => {
     const metrics_rt = context.measureText(rental_cost);
     const textWidth_rt = metrics_rt.width;
     context.fillText(rental_cost, 530 - textWidth_rt, 405);
-
+    console.log(rental_cost, "이거 확인")
     // 보증금
     const deposit = `${result.deposit}`;
     const metrics_dp = context.measureText(deposit);
@@ -100,7 +100,7 @@ export default async (contract_id : Number | BigInt) => {
     // Canvas를 이미지로 변환
     // Canvas를 Base64로 변환
     const imgBase64 = canvas.toBuffer('image/png').toString('base64');
-
+    console.log(imgBase64);
     // Base64 디코딩
     const decoding = atob(imgBase64);
 
