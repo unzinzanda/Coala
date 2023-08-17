@@ -89,7 +89,7 @@ export default async (contract_id : Number | BigInt) => {
     const textWidth_cs = metrics_cs.width;
     context.fillText(cs_name, 550 - textWidth_cs, 896);
     const consumer_sign = await loadImage(result.consumer_sign);
-    context.drawImage(producer_sign, 560, 850, consumer_sign.width, consumer_sign.height);
+    context.drawImage(consumer_sign, 560, 850, consumer_sign.width, consumer_sign.height);
 
     // 계약 일시
     const created_at = formatDate(result.created_at);
@@ -99,7 +99,8 @@ export default async (contract_id : Number | BigInt) => {
 
     // Canvas를 이미지로 변환
     const imageBuffer = canvas.toBuffer('image/png');
+    const base64Image = imageBuffer.toString('base64');
 
-    return imageBuffer;
+    return base64Image;
 
 };

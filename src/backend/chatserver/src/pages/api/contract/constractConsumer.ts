@@ -18,6 +18,7 @@ import { IncomingForm } from "formidable";
 import { User } from 'aws-cdk-lib/aws-iam';
 import makeContract from '@/lib/makeContract';
 import timestamp from '@/lib/timestamp';
+import generateImage from '../generateImage';
 // const storage = multer.memoryStorage();
 // const upload = multer({ storage: storage }).single('producer_sign');
 
@@ -64,8 +65,23 @@ const receiveData = withCors(async (req: any, res: any) => {
       
       
       const result = await updateContract(NewConstractData, contract_id);
-      const contract_images = await makeContract(contract_id);
-      const contract_path = await uploadToS3('contract', `${timestamp()}.png`, contract_images);
+      const contract_images : any  = await makeContract(contract_id);
+
+
+      const byteCharacters = atob(contract_images);
+      const byteNumbers = new Array(byteCharacters.length);
+
+      for (let i = 0; i < byteCharacters.length; i++) {
+          byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+
+      const byteArray = new Uint8Array(byteNumbers);
+      // Blob 객체를 생성합니다.
+      const _file = new Blob([byteArray], { type: 'image/png' });
+      const fileName = 'sign_img_' + name + '_' + new Date().getTime() + '.png';
+
+
+      const contract_path = await uploadToS3('contract', fileName, _file);
       const result_ = await updateContract({contract_path}, contract_id);
       console.log("리절트 주세요",result_);
       // const contractData = await readQuery('history',{conditionQuery, values})
