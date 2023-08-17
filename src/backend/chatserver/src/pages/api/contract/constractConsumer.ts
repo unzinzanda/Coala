@@ -69,7 +69,8 @@ const receiveData = withCors(async (req: any, res: any) => {
       const fileBlob = contract_images.get('file');
 
       // file Blob을 buffer로 변환합니다.
-      const fileBuffer = await fileBlob.arrayBuffer();
+      const arrayBuffer  = await fileBlob.arrayBuffer();
+      const fileBuffer = Buffer.from(arrayBuffer);
 
       const contract_path = await uploadToS3('contract', `${timestamp()}.png`, fileBuffer);
       const result_ = await updateContract({contract_path}, contract_id);
