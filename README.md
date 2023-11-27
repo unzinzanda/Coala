@@ -1,46 +1,66 @@
-# SSAFY생들 간의 코딩장비 공유 서비스 - COALA
+# 🐨 코딩장비 대여 서비스 - COALA
 > 자신에게 맞는 코딩장비를 찾아보고, P2P 대여 및 거래를 진행하는 중개 사이트
 
 <br>
 
-### 프로젝트 기간 🗓️
+### 🗓️ 프로젝트 기간
 - 2023.07.04 ~ 2023.08.18
 
 <br>
 
-### 개발환경 🛠️
->
-> Java 17.
-> >
-> Spring Boot 3.1.2.
-> > 
-> Node.js 18.
-> >
-> Next 13.2.4.
-> >
-> React 18.2.0.
-> >
-> Docker 24.0.2
-> >
-> Docker Hub
-> >
-> Jenkins 2.4.18
+### 🛠️ 기술 스택
+### 💻 FrontEnd
+<div>
+  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+  <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+  <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white">
+  <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+  <img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+  <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">
+</div>
+
+### 🖥️ BackEnd
+<div>
+  <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> 
+  <img src="https://img.shields.io/badge/nextdotjs-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"> 
+  <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
+  <img src="https://img.shields.io/badge/springsecurity-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white">
+  <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white">
+  <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+</div>
+
+### 📘 Common
+<div>
+  <img src="https://img.shields.io/badge/socket.io-010101?style=for-the-badge&logo=socket.io&logoColor=white">
+</div>
+
+### 🏙️ Infra
+<div>
+  <img src="https://img.shields.io/badge/amazon ec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white">
+  <img src="https://img.shields.io/badge/amazon s3-569A31?style=for-the-badge&logo=amazons3&logoColor=white">
+  <img src="https://img.shields.io/badge/nginx-009639?style=for-the-badge&logo=nginx&logoColor=white">
+  <img src="https://img.shields.io/badge/jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white">
+  <img src="https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white">
+</div>
+  </br>
+  </br>
 
 <br>
 
-## 0. 팀원 🧑‍🤝‍🧑
+## 0. 🧑‍🤝‍🧑 팀원 
 
 | 팀원| 역할 | 담당 | 파트 |
 |:---|:---|:---|:---|
 |정선재|팀장| Front End | 홈 화면, 기술 게시판, 자유 게시판, UCC |
-|심은진|팀원| Front End | JWT 관리, 회원가입, 채팅, 거래 및 계약서, 마이페이지, 카카오페이 결제 |
+|심은진|팀원| Front End | JWT 관리, 회원가입, 채팅, 거래 및 계약서, 마이페이지 |
 |서지호|팀원| Front End | 제공자 게시판, 이용자 게시판 |
 |강승현|팀원| Back End | 인프라 구축, 멤버 관리, 거래 게시판 | 
 |권민우|팀원| Back End | 커뮤니티 게시판, 디버깅, 코드 테스트 |
 |김수찬|팀원| Back End | 인프라 구축, 채팅I/O, 거래 및 계약 |
 
+<br>
+
 ### 0.1 상세 업무 분담 내역
----
 <br>
 
 **공통**: 
@@ -98,49 +118,41 @@
 
 ## 1. 구조도
 
-### 1.1. 아키텍쳐 구조 🔗
+### 1.1. 🔗 아키텍쳐 구조 
 ![이미지 추가해주세요](./docs/Structure/COALA_Architecture.png)
 
 ---
-### 1.2. ERD 구조 🎛
+### 1.2. 🎛 ERD 구조 
 ![이미지 추가해주세요](./docs/Structure/COALA_ERD_summery.png)
 
 ---
-### 1.3. 컴포넌트 구조 🎞
+### 1.3. 🎞 컴포넌트 구조 
 ![이미지를 추가해주세요](./docs/Structure/COALA_Component.PNG)
 
 
 <br>
 
 ### 1.4. 폴더 구조
----
+
+<br>
+
 #### 폴더 양이 많기에 따로 위치시켰습니다.
 [파일 구조도 위치](./docs/File_Content/README.md)
 
 
 <br>
 
-## 2. 개요 📑
+## 2. 📑 개요 
 
 ### 2.1 목표 서비스
 ```
     1. 자신에게 맞는 장비를 미리 사용하고 판단하므로 불필요한 소비를 줄일 수 있는 서비스
     2. 사용하지 않는 장비를 렌탈 해주며, 용돈을 마련할 수 있는 서비스
-    3. 기수간의 대화가 부족한 SSAFY생들에게 대화의 장을 마련하는 서비스
 ```
 ### 2.2 상세 내용
-> 0. 시작페이지
-```
-1. 서비스에 대한 전체적인 설명
-```
-
 > 1. 메인페이지
 ```
-1. 목표 서비스 작성
-2. 목표 서비스 작성
-3. 목표 서비스 작성
-4. 목표 서비스 작성
-5. 목표 서비스 작성
+1. 서비스에 대한 소개
 ```
 
 > 2. 마이 페이지
@@ -194,11 +206,7 @@
 > 7. 계약서 작성
 ```
 1. 상호 사인 기능
-```
-
-> 8. 결제
-```
-1. 목표 서비스 작성
+2. 거래자들끼리 서명이 다 이루어지면 이미지 파일로 추출 가능
 ```
 
 <br>
@@ -206,7 +214,6 @@
 ## 3. 웹 사이트 예시 📺
 
 ### **메인 페이지**
-![](./docs/example/mainpage1.PNG)
 ![](./docs/example/mainpage2.PNG)
 
 <br>
@@ -216,24 +223,13 @@
 
 <br>
 
-
-### **자유게시판 **
-![](./docs/example/freePost1.PNG)
-
-<br>
-
-### **자유게시판 **
-![](./docs/example/techPost1.PNG)
-
-
-<br>
-
 ### **제공자 게시판**
 ![](./docs/example/store1.PNG)
 ![](./docs/example/store2.PNG)
 
 
 <br>
+
 
 ### **이용자 게시판**
 ![](./docs/example/auction1.PNG)
@@ -252,6 +248,17 @@
 ### **계약서 작성**
 ![](./docs/example/Contract.png)
 ![](./docs/example/2023-08-18%2011_51_17.png)
+
+<br>
+
+### **자유게시판**
+![](./docs/example/freePost1.PNG)
+
+<br>
+
+### **자유게시판**
+![](./docs/example/techPost1.PNG)
+
 
 <br>
 
